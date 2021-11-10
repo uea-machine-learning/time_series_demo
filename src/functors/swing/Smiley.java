@@ -22,9 +22,9 @@ public class Smiley extends JPanel{
         ActionListener f=new FirstActionListener(); //new HappyActionListener();
         happyButton.addActionListener(f);
 
-//        anotherButton = new JToggleButton(" FOO");
+        anotherButton = new JToggleButton(" FOO");
 //         ADD AN ACTION LISTENER HERE
-//        add(anotherButton);
+        add(anotherButton);
       
       
     }
