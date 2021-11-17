@@ -1,6 +1,8 @@
 package time_series;
 
-public class ManhattanDistance implements Distance{
+import time_series.distances.Distance;
+
+public class ManhattanDistance implements Distance {
 
     public double distance(double[] x, double[] y){
         double d=0;

@@ -1,13 +1,29 @@
 package time_series;
 
 public class TimeSeries implements Comparable<TimeSeries>{
-    double[] series;
-    int classValue; //values 0== negative, 1 == positive
-    String patientName;
+    public double[] series;
+    double max, min, mean, stDeviation, sum;
+
     public TimeSeries(double[] d){
         series =d;
+        calculateStats();
     }
-
+    final void calculateStats(){
+        mean=stDeviation=sum=0;
+        min=mean=series[0];
+        for(double d:series){
+            sum+=d;
+            if(d<min)
+                min=d;
+            if(d>max)
+                max=d;
+        }
+        mean=sum/series.length;
+        for(int i=0;i<series.length;i++)
+            stDeviation= (series[i]-mean)*(series[i]-mean);
+        stDeviation/=(series.length-1);
+    }
+    double getMax(){ return max;}
     /**
      *
      * @param o othe time series
@@ -28,7 +44,6 @@ public class TimeSeries implements Comparable<TimeSeries>{
 
         return diff;
     }
-
     @Override
     public String toString(){
         return series[0]+","+series[1];

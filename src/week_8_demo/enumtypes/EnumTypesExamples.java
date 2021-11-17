@@ -26,11 +26,11 @@ public class EnumTypesExamples {
 
 	public enum ScienceSchool {CMP,BIO,MTH,ENV,CHE,PHA}
 	public enum UEAFaculty {SCI,HUM,MED,SOC}
+
+
+
 	public static void main(String[] args) {
-
-
-
-		ScienceSchool x=ScienceSchool.BIO;
+	ScienceSchool x=ScienceSchool.BIO;
 		ScienceSchool y=ScienceSchool.PHA;
 		System.out.println("ORDINAL for "+x+"  = "+x.ordinal()+" "+y.getClass().isEnum());
 		System.out.println("ORDINAL for "+y+"  = "+y.ordinal()+"   "+x.getClass().hashCode());

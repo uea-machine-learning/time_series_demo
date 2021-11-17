@@ -3,6 +3,8 @@ package time_series;
 import java.util.Comparator;
 
 public class SumComparator implements Comparator<TimeSeries> {
+
+    //Breaks encapsulation
     @Override
     public int compare(TimeSeries x, TimeSeries y) {
         double s1=0,s2=0;
