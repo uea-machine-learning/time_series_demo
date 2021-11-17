@@ -22,6 +22,8 @@ FIRST(70), TWO_ONE(60), TWO_TWO(50), THIRD(40), FAIL(0);
      }
      public static final Grade FIRST = new Grade(70){
      //This is an anonymous inner class 
+
+
      };
      public static final Grade TWO_ONE = new Grade(60){};
      public static final Grade TWO_TWO = new Grade(50){};

@@ -21,8 +21,11 @@ public class Smiley extends JPanel{
         happyButton=new JToggleButton("Happy");
         add(happyButton);
         System.out.println("Happy button "+happyButton.getClass().getName());
-//        happyButtonAction hb=new happyButtonAction();
-        ActionListener f=new ActionListener(){
+
+
+
+        //        happyButtonAction hb=new happyButtonAction();
+        ActionListener f= new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if(happy){
@@ -36,6 +39,7 @@ public class Smiley extends JPanel{
                     repaint();
                 }
         };
+
         happyButton.addActionListener(f);
 
         anotherButton = new JToggleButton(" FOO");
@@ -68,6 +72,23 @@ public static void main(String[] args) {
     	f.setVisible(true);       
 
 }
+
+public class FirstActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            happy=false;
+            System.out.println(" button pressed!!!!!");
+        }
+    }
+
+
+
+
+
+
+
+
+
 //Inner class, can access the variables of the enclosing object
 public class happyButtonAction implements ActionListener{
     public void actionPerformed(ActionEvent e) {

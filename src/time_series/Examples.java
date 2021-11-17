@@ -1,11 +1,11 @@
 package time_series;
 
-import time_series.distances.Distance;
-import time_series.distances.EuclideanDistance;
-import time_series.distances.EuclideanTimeSeriesDistance;
-import time_series.distances.TimeSeriesDistance;
+import time_series.distances.*;
+import week_7_demo.functors.Selector;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class Examples {
     static double[] randomTimeSeries(int n){
@@ -80,33 +80,51 @@ public class Examples {
         System.out.println(" Min ED distance = "+minDist);
         TimeSeries min= minimumTimeSeries(ts);
         System.out.println("min series = "+min);
-        min= minimumTimeSeries(ts, new SumComparator());
+        min= minimumTimeSeries(ts, new TimeSeries.SumComparator());
         System.out.println("min series = "+min);
-        min= minimumTimeSeries(ts, new MaxComparator());
+        min= minimumTimeSeries(ts, new TimeSeries.MaxComparator());
         System.out.println("min series = "+min);
     }
-    public static void week8LiveDemo() {
+    public static void week8LiveDemoIterators() {
 //Create a TimeSeriesCollection size 10
         TimeSeriesCollection tsc= new TimeSeriesCollection();
         for(int i=0;i<10;i++) {
             double[] query = randomTimeSeries(100);
             tsc.addTimeSeries(new TimeSeries(query));
         }
-//I want to process all time series with a max value greater than 1
+//I want to process all time series with a max value greater than 0.99
 //This breaks all encapsulation
-        MaxThresholdSelector max = new MaxThresholdSelector(0.99);
+        Selector max = new TimeSeries.MaxThresholdSelector(0.99);
         for(int i=0;i<tsc.currentSize;i++)
             if(max.select(tsc.ts[i]))
                 System.out.println("Selected series "+i+" with max = "+tsc.ts[i].getMax());
 //ITERATORS:
 // 1. Create an iterator that iterates over all
+//        TimeSeriesCollectionIterator tscIterator = new TimeSeriesCollectionIterator(tsc);
+//        while(tscIterator.hasNext())
+//            System.out.println(" "+tscIterator.next());
+        ArrayList<String> arr = new ArrayList<>();
+        arr.add("Hello");
+        arr.add("World");
+        for(String s:arr)
+            System.out.println(s);
+        Comparator maxCmp= new TimeSeries.MaxComparator();
+        System.out.println(" Compare two time series "+maxCmp.compare(tsc.ts[0],tsc.ts[1]));
+        Iterator maxIt = tsc.new TimeSeriesCollectionIterator();
+        while(maxIt.hasNext())
+            System.out.println(" selected series with max = "+((TimeSeries)maxIt.next()).getMax());
+        Iterator myIt = tsc.iterator();
+        while(myIt.hasNext())
+            System.out.println(myIt.next());
 
+        for(Object t:tsc)
+            System.out.println(" selected series default iterator = "+((TimeSeries)t).getMax());
 
 
     }
     public static void main(String[] args) {
 //        week7LiveDemo();
-        week8LiveDemo();
+//        week8LiveDemoIterators();
 
     }
 }

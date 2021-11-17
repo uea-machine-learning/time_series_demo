@@ -10,11 +10,15 @@ FIRST(70), TWO_ONE(60), TWO_TWO(50), THIRD(40), FAIL(0);
 
 	@Override
 	public String toString(){
-		return "Grade Boundary = "+boundary;
+		return super.toString()+", boundary = "+boundary;
 	}
 
 }
 
+	public static void main(String[] args) {
+		Grade myGrade = Grade.FIRST;
+		System.out.println(" Grade = "+myGrade);
+	}
 
     
 }

@@ -12,9 +12,13 @@ public class EnumTypesExamples {
 	public static void enumOldSchool() {
 		int myCountry=ENGLAND;
 		int fr=FRANCE;
+
 		boolean biggest=biggestCountry(myCountry);
 		boolean next=biggestCountry(-10);
 		int conquered=myCountry+fr;
+
+
+
 	}
 	public static boolean biggestCountry(int a){
 			if(a==2)//Germany the biggest
@@ -22,16 +26,50 @@ public class EnumTypesExamples {
 			return false;
 	}
 
-		public enum Suit{CLUBS, SPADES, DIAMONDS, HEARTS}
+	public enum Country{ENGLAND,FRANCE,GERMANY,ITALY}
+
+	public enum Suit{CLUBS, SPADES, DIAMONDS, HEARTS}
 
 	public enum ScienceSchool {CMP,BIO,MTH,ENV,CHE,PHA}
 	public enum UEAFaculty {SCI,HUM,MED,SOC}
 
+	public static class Person{
+		int myC=0;
+		Country myCountry;
+		ScienceSchool mySchool;
+		public Person(){
+			myCountry=Country.ENGLAND;
+		}
+		public void setMyCountry(Country c){
+			myCountry=c;
+			myC=6;
 
+		}
 
+	}
 	public static void main(String[] args) {
-	ScienceSchool x=ScienceSchool.BIO;
+
+		Person p = new Person();
+		p.setMyCountry(Country.FRANCE);
+		System.out.println(" Country = "+p.myCountry);
+		p.mySchool=ScienceSchool.CMP;
+		ScienceSchool school = ScienceSchool.BIO;
+		if(p.mySchool == school)
+			System.out.println(" match is true");
+
+		p.myC=-5654564;
+
+		ScienceSchool x=ScienceSchool.BIO;
 		ScienceSchool y=ScienceSchool.PHA;
+		ScienceSchool another = ScienceSchool.BIO;
+		if(x==another)
+			System.out.println(" The same memory");
+
+
+
+
+
+
 		System.out.println("ORDINAL for "+x+"  = "+x.ordinal()+" "+y.getClass().isEnum());
 		System.out.println("ORDINAL for "+y+"  = "+y.ordinal()+"   "+x.getClass().hashCode());
 		for(UEAFaculty f:UEAFaculty.values())

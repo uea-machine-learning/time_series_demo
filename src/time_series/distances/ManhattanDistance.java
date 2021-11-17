@@ -1,4 +1,4 @@
-package time_series;
+package time_series.distances;
 
 import time_series.distances.Distance;
 

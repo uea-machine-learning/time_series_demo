@@ -75,6 +75,38 @@ public class Student implements Comparable<Student>{
 
 //CLASS DEFINED IN A METHOD 
         Student bob=new Student();
+
+        //LOADS OF BESPOKE CODE
+
+
+        class MyComparator implements Comparator<Student>{
+            @Override
+            public int compare(Student o1, Student o2) {
+                return 0;
+            }
+        }
+        Comparator<Student> cmpStrangelyForHere = new MyComparator();
+        Comparator<Student> duh = new Comparator<Student>(){
+            @Override
+            public int compare(Student o1, Student o2) {
+                return o1.name.compareTo(o2.name);
+            }
+
+        };
+
+
+        Comparator<Student> myThing = new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return o1.name.compareTo(o2.name);
+            }
+        };
+        Comparator<Student> cmpStrangelyForHereAgain = new MyComparator();
+
+
+        Comparator<Student> cmpStrangelyForHereAgainAgain = new MyComparator();
+
+
     }
 
 }
