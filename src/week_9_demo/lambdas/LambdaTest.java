@@ -80,7 +80,7 @@ static ArrayList selectFromList(List a, Selector s){
        list.add(new Student("Jim",63,2));
        list.add(new Student("Fred",88,1));
        list.add(new Student("Lucy",68,3));
-       Selector s=new Student.selectYear1();
+       Selector s=new Student.SelectYear1();
        ArrayList firstYears=selectFromList(list,s);
         System.out.println("First years ="+firstYears);
        ArrayList secondYears=selectFromList(list,new Selector(){

@@ -38,6 +38,10 @@ public class Student {
             return t.year-t1.year;
         }
     }
+
+
+
+
     static class compareByName implements Comparator<Student>{
         @Override
         public int compare(Student t, Student t1) {
@@ -126,11 +130,15 @@ public class Student {
 
         @Override
         public int compare(Student o1, Student o2) {
+            if(o1.score>o2.score)
+                return 1;
+            if(o2.score>o1.score)
+                return -1;
             return 0;
         }
     }
 
-    static class selectYear1 implements Selector{
+    static class SelectYear1 implements Selector{
         @Override
         public boolean select(Object o) {
             if(((Student)o).year==1) return true;
