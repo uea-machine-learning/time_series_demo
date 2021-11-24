@@ -34,15 +34,18 @@ static ArrayList selectFromList(List a, Selector s){
     public static void main(String[] args) {
 
 
-
-
+        selectExamplesWithFunctors();
+        System.exit(0);
         selectExamplesWithLambdas();
 //Generics with week_9_demo.lambdas
-        BiFunction<Car,Student,String> bi =(a,b)->a.toString()+b.toString();
+        BiFunction<Student,Student,String> bi =(a,b)->a.toString()+b.toString();
+        Student alice=new Student("Alice",65,2);
         Student bob=new Student("Bob",65,2);
-        Car bmw= new Car("BMW","Blue",2,1,2000);
-        String str=bi.apply(bmw,bob);
-        
+        String str=bi.apply(alice,bob);
+        System.out.println(" Bi first = "+str+" other way around ="+bi.apply(bob,alice));
+
+
+
     }
 
     public static void selectExamplesWithLambdas() {
@@ -71,7 +74,7 @@ static ArrayList selectFromList(List a, Selector s){
     
     
     public static void selectExamplesWithFunctors() {
-        LinkedList<Student> list=new LinkedList();
+        LinkedList<Student> list=new LinkedList<>();
        list.add(new Student("Bob",44,1));
        list.add(new Student("Alice",58,3));
        list.add(new Student("Jim",63,2));
@@ -86,7 +89,12 @@ static ArrayList selectFromList(List a, Selector s){
                return false;
            }
        });
-        System.out.println("Second years ="+secondYears);
+       System.out.println("Second years ="+secondYears);
+       ArrayList thirdYears=selectFromList(list, student -> ((Student) student).year ==3);
+       System.out.println("Third years ="+thirdYears);
+
+
+
         
         
         

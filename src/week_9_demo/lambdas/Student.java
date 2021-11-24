@@ -44,15 +44,6 @@ public class Student {
             return t.name.compareTo(t1.name);
         }
     }
-    static class selectYear1 implements Selector{
-
-        @Override
-        public boolean select(Object o) {
-            if(((Student)o).year==1) return true;
-            return false;
-        }
-        
-    }
     public static ArrayList<Student> createExampleArray(){
         ArrayList<Student> s = new ArrayList<>();
         s.add(new Student("BOB",85,2));
@@ -130,4 +121,24 @@ public class Student {
     static boolean dummy(Object a){
         return true;
     }
+
+    static class StudentScoreCompare implements Comparator<Student>{
+
+        @Override
+        public int compare(Student o1, Student o2) {
+            return 0;
+        }
+    }
+
+    static class selectYear1 implements Selector{
+        @Override
+        public boolean select(Object o) {
+            if(((Student)o).year==1) return true;
+            return false;
+        }
+
+    }
+
+
+
 }
