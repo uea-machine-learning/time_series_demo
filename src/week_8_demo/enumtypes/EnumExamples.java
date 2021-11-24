@@ -3,9 +3,12 @@ public class EnumExamples {
 
 enum Grade{
 FIRST(70), TWO_ONE(60), TWO_TWO(50), THIRD(40), FAIL(0);
+
+	double bob;
 	final int boundary;
-	Grade(int x){
+	Grade(int x, double b){
 		boundary=x;
+		bob=b;
 	}
 
 	@Override

@@ -2,9 +2,11 @@ package week_9_demo.serialisation;/*
 iterators.week_9_demo.serialisation.Student example used in lecture 1
  */
 
-import java.io.Serializable;
+import java.io.*;
 
-public class Student implements Serializable {
+public class Student{
+
+
     private String name;
     private int age;
     private String school;
@@ -57,6 +59,16 @@ public class Student implements Serializable {
     public static void setNumStudent(int a){numStudents=a;}
     public String toString(){
         return name+" aged = "+age;
+    }
+
+
+    public static void main(String[] args) throws IOException {
+    //Simple serialisation example
+
+        FileOutputStream fos = new FileOutputStream("MyObject.ser");
+        ObjectOutputStream out = new ObjectOutputStream(fos);
+        //out.writeObject();
+
     }
 
 }
