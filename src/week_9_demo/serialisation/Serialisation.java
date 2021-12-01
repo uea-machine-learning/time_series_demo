@@ -6,15 +6,19 @@ import java.util.ArrayList;
 public class Serialisation {
 
 
-    public static void main(String[] args) throws IOException {
-        ArrayList<String> myList=makeArray();
-        FileOutputStream fos = new FileOutputStream("Object.ser");
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+        Student alice = new Student("Alice",99);
+        FileOutputStream fos = new FileOutputStream("Alice.ser");
         ObjectOutputStream out = new ObjectOutputStream(fos);
-        out.writeObject(myList);
+        out.writeObject(alice);
         out.close();
 
 
-
+        FileInputStream inf= new FileInputStream("Alice.ser");
+        ObjectInputStream ino = new ObjectInputStream(inf);
+        Object ob = ino.readObject();
+        System.out.println(ob);
     }
 
 

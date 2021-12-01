@@ -3,13 +3,16 @@ iterators.week_9_demo.serialisation.Student example used in lecture 1
  */
 
 import java.io.*;
+import java.util.ArrayList;
 
-public class Student{
-
+public class Student implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     private String name;
     private int age;
     private String school;
+    private int shoeSize;
+
     public Student() {
     }
     public Student(Student s) {
@@ -64,10 +67,19 @@ public class Student{
 
     public static void main(String[] args) throws IOException {
     //Simple serialisation example
-
-        FileOutputStream fos = new FileOutputStream("MyObject.ser");
+        Student sam = new Student("Sam",66);
+        FileOutputStream fos = new FileOutputStream("MyStudent.ser");
         ObjectOutputStream out = new ObjectOutputStream(fos);
-        //out.writeObject();
+        out.writeObject(sam);
+        out.close();
+        ArrayList<String> str = new ArrayList<>();
+        str.add("Hello");
+        str.add("World");
+        fos=new FileOutputStream("Arr.ser");
+        out.writeObject(str);
+        out.close();
+
+
 
     }
 

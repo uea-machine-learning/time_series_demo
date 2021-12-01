@@ -1,6 +1,7 @@
 package week_9_demo.number_and_ellipsis;
 
 public class Ellipsis {
+
     public static double average(Double...numbers){
         double s=0;
         for(int i=0;i<numbers.length;i++)

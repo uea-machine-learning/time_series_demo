@@ -2,46 +2,44 @@
 Simple MyArrayList wrapper to illustrate week_9_demo.serialisation.Serialisation
  */
 
-package week_9_demo.serialisation;
+package week_10_demo.generics_topic11;
+
+import week_9_demo.serialisation.Serialisation;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.AbstractList;
 import java.util.Random;
 
 /**
- * Example class to demonstrate bespoke week_9_demo.serialisation
+ * MyArrayList to demonstrate generics
  * @author ajb
  */
-public class IntegerArray extends AbstractList<Integer> implements Serializable {
+public class MyArrayList implements Serializable {
     private static final long serialVersionUID =101l;
-    transient int[] d;
+    transient Integer[] d;
     int maxSize;
     int currentSize;
     public static int GLOBALMAXSIZE=1000;
-    public IntegerArray(){
+    public MyArrayList(){
         maxSize=GLOBALMAXSIZE;
-        d=new int[maxSize];
+        d=new Integer[maxSize];
     }
 
-    @Override
     public int size() {
         return currentSize;
     }
 
-    @Override
     public boolean isEmpty() {
         return currentSize==0;
     }
 
-    @Override
     public Integer get(int index) {
         return d[index];
     }
     public  void generateSparseData(){
         Random r= new Random();
         maxSize=10000000;
-        d=new int[maxSize];
+        d=new Integer[maxSize];
         int nosEntries=maxSize/1000;
         for(int i=0;i<nosEntries;i++) {
             d[r.nextInt(maxSize)] = r.nextInt();
@@ -73,7 +71,7 @@ public class IntegerArray extends AbstractList<Integer> implements Serializable 
     }
     private void readObject(java.io.ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
-        d=new int[maxSize];
+        d=new Integer[maxSize];
         for(int i=0;i<currentSize;i++){
             int pos=s.readInt();
             int val=s.readInt();
@@ -86,7 +84,7 @@ public class IntegerArray extends AbstractList<Integer> implements Serializable 
 
     public static void main(String[] args){
 //BEFORE: Save Sparse data
-        IntegerArray ar= new IntegerArray();
+        MyArrayList ar= new MyArrayList();
         ar.generateSparseData();
         Serialisation.writeToFile(ar,"IntegerArraySparse.ser");
 

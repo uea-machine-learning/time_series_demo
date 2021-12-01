@@ -1,5 +1,6 @@
 package week_9_demo.number_and_ellipsis;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,8 +9,14 @@ import java.util.Random;
 public class Number {
 
     public static void main(String[] args) {
-        //BOXING
+        int[] arr1 = new int[100];
+        ArrayList<Integer> arr2 = new ArrayList<>();
+        int blah=33;
         Integer x=33;
+        if(blah == x)
+            System.out.println(" Ints equal");
+        if(x instanceof Object)
+            System.out.println(" x an object");
         Integer y = new Integer(55);
         Double z=33.0;
         int zz=x+y;
