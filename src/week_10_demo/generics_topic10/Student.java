@@ -15,7 +15,7 @@ import java.util.function.Predicate;
  *
  * @author ajb. Example of using generic types to make your code clearer
  */
-public class Student {
+public class Student implements Comparable<Student>{
     String name;
     double score;
     int year;
@@ -25,24 +25,32 @@ public class Student {
         year=y;
     }
 
+    @Override
+    public int compareTo(Student obj){
+        if(score > score) return 1;
+        if(score < score) return -1;
+        return 0;
+
+
+    }
 
 
 
 
 
-    static class CompareByScore implements Comparator{
+    static class CompareByScore implements Comparator<Student>{
         @Override
-        public int compare(Object t, Object t1) {
-            double diff= ((Student)t).score-((Student)t1).score;
+        public int compare(Student t, Student t1) {
+            double diff= t.score-t1.score;
             if(diff>0) return 1;
             if(diff<0) return -1;
             return 0;
         }
     }
-    static class compareByYear implements Comparator{
+    static class compareByYear implements Comparator<Student>{
         @Override
-        public int compare(Object t, Object t1) {
-            return ((Student) t).year-((Student) t1).year;
+        public int compare(Student t, Student t1) {
+            return t.year-t1.year;
         }
     }
 
@@ -55,17 +63,17 @@ public class Student {
         return s;
 
     }
-    public static ArrayList selectStudents(ArrayList students, Selector sel){
-        ArrayList res=new ArrayList();
-        for(Object s:students){
+    public static ArrayList<Student> selectStudents(ArrayList<Student> students, Selector<Student> sel){
+        ArrayList<Student> res=new ArrayList<>();
+        for(Student s:students){
             if(sel.select(s))
                 res.add(s);
         }
         return res;
     }
-    public static ArrayList selectStudentsPredicate(ArrayList students, Predicate sel){
-        ArrayList res=new ArrayList();
-        for(Object s:students){
+    public static ArrayList<Student> selectStudentsPredicate(ArrayList<Student> students, Predicate<Student> sel){
+        ArrayList<Student> res=new ArrayList();
+        for(Student s:students){
             if(sel.test(s))
                 res.add(s);
         }
@@ -77,21 +85,21 @@ public class Student {
 
     public static void main(String[] args) {
 //Lambda expression
-        Selector sel=s->((Student)s).year==1;
-        ArrayList full=createExampleArray();
-        ArrayList  year2=selectStudents(full,sel);
+        Selector<Student> sel=s->s.year==1;
+        ArrayList<Student> full=createExampleArray();
+        ArrayList<Student>  year2=selectStudents(full,sel);
 
-        ArrayList temp=selectStudents(full,
-                new Selector() {
+        ArrayList<Student> temp=selectStudents(full,
+                new Selector<Student>() {
                     @Override
-                    public boolean select(Object o) {
-                        return ((Student)o).name.equals("BOB");
+                    public boolean select(Student o) {
+                        return o.name.equals("BOB");
                     }
                 }
         );
         for(Object s:temp)
             System.out.println(s);
-        temp=selectStudents(full,o->((Student) o).name.equals("ALICE"));
+        temp=selectStudents(full,o->o.name.equals("ALICE"));
         Predicate pred = s->((Student)s).year==1;
         ArrayList year1=selectStudentsPredicate(full,pred);
         Comparator cmp2 = new StudentScoreCompare();

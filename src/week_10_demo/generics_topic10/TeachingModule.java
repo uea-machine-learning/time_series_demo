@@ -1,17 +1,25 @@
 package week_10_demo.generics_topic10;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class TeachingModule {
-    ArrayList myStudents;
+public class TeachingModule implements Iterable<Student>{
+    ArrayList<Student> myStudents;
+    ArrayList<Teacher> myTeachers;
 
-    public TeachingModule(ArrayList students){
-        myStudents=students; //NOT A DEEP COPY, reference to an arraylist
-//        myStudents = new ArrayList(students); // Copies all references in students to myStudents
+    public TeachingModule(ArrayList<Student>  students){
+//        myStudents=students; //NOT A DEEP COPY, reference to an arraylist
+        myStudents = new ArrayList<>(students); // Copies all references in students to myStudents
 //        myStudents = new ArrayList(); // Copies all references in students to myStudents
 //        for(Object s:students){
 //            myStudents.add(s.clone()); //Only if implements Clonable interfact
         }
+
+    public TeachingModule(ArrayList<Student>  students, ArrayList<Teacher> teachers){
+        this(students);
+        myTeachers = new ArrayList<>(teachers);
+    }
+
     @Override
     public String toString(){
         return myStudents.toString();
@@ -34,5 +42,21 @@ public class TeachingModule {
 
     }
 
+    @Override
+    public Iterator<Student> iterator() {
+        return new MyIterator();
+    }
 
+    private class MyIterator implements Iterator<Student> {
+        int pos=0;
+        @Override
+        public boolean hasNext() {
+            return myStudents.size()>pos;
+        }
+
+        @Override
+        public Student next() {
+            return myStudents.get(pos++);
+        }
+    }
 }
