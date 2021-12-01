@@ -19,7 +19,7 @@ public class Student implements Comparable<Student>{
     String name;
     double score;
     int year;
-    Student(String n, double s, int y){
+    public Student(String n, double s, int y){
         score=s;
         name=n;
         year=y;

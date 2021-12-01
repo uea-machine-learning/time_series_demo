@@ -44,10 +44,13 @@ public class TeachingModule implements Iterable<Student>{
 
     @Override
     public Iterator<Student> iterator() {
-        return new MyIterator();
+        return new MyStudentIterator();
+    }
+    public Iterator<Teacher> getTeacherIterator() {
+        return new MyTeacherIterator();
     }
 
-    private class MyIterator implements Iterator<Student> {
+    private class MyStudentIterator implements Iterator<Student> {
         int pos=0;
         @Override
         public boolean hasNext() {
@@ -59,4 +62,18 @@ public class TeachingModule implements Iterable<Student>{
             return myStudents.get(pos++);
         }
     }
+    private class MyTeacherIterator implements Iterator<Teacher> {
+        int pos=0;
+        @Override
+        public boolean hasNext() {
+            return myTeachers.size()>pos;
+        }
+
+        @Override
+        public Teacher next() {
+            return myTeachers.get(pos++);
+        }
+    }
+
+
 }

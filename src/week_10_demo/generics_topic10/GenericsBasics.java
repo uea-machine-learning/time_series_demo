@@ -30,22 +30,27 @@ public class GenericsBasics {
 
 
       //Generics with classes: Comparable, Comparators, Iterable, Iterator,
-        ArrayList myClass = Student.createExampleArray();
-
-        //Iterator
-        TeachingModule tm = new TeachingModule(Student.createExampleArray());
+        ArrayList<Student> myClass = Student.createExampleArray();
         ArrayList<Teacher> teach = new ArrayList<>();
         teach.add(new Teacher("Tony"));
         teach.add(new Teacher("Gavin"));
+        //Iterator
+        TeachingModule tm = new TeachingModule(myClass,teach);
 
 
-
-        Iterator<Student> myIterator = tm.iterator(); // Create a new MyIterator object connected to tm;
+/*        Iterator<Student> myIterator = tm.iterator(); // Create a new MyIterator object connected to tm;
         while(myIterator.hasNext()){
             Student stude = myIterator.next();
             if(stude.name.equals("tony"))
                 System.out.println("Hello");
-
+        }
+*/
+        for(Student st:tm)
+            System.out.println(" Student = " + st);
+        Iterator<Teacher> ttttt = tm.getTeacherIterator();
+        while(ttttt.hasNext()){
+            Teacher t = ttttt.next();
+            System.out.println(" Teacher = "+t);
         }
 
     }
