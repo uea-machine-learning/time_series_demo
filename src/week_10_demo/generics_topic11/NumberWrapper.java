@@ -17,7 +17,6 @@ public class NumberWrapper<E extends Number> {
         i.add(55);
         n.add(44.775454);
         n.add(55);
-        n=i;
 
 
 
