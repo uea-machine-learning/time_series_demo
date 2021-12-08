@@ -28,8 +28,8 @@ public class Wrapper<E> {
     public static int sumArray(ArrayList b){
         Iterator it = b.iterator();
         int sum=0;
-        for(Integer i:b)
-            sum+=i;
+        for(Object i:b)
+            sum+=(Integer)i;
         return sum;
     }
 
