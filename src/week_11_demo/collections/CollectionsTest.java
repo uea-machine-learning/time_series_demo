@@ -101,14 +101,15 @@ public class CollectionsTest {
 
     public static void usingSetsBasic() {
         double[] x = new double[100];
-        List<String> myList;
-
-
+        List<String> myList = new ArrayList<>();
 
         myList.add("Bob");
         myList.add("Bob");
         myList.add("Alice");
         myList.add("Fred");
+        myList.set(3,"Kate");
+        String str3=myList.get(3);
+        System.out.println(" pos 3 = "+str3);
         Set<String> myHashSet=new HashSet<>(myList);
         Set<String> myTreeSet=new TreeSet<>(myList);
         System.out.println("Hash Set");
@@ -119,7 +120,18 @@ public class CollectionsTest {
             System.out.println(str);
         if(myHashSet.equals(myTreeSet))
             System.out.println(" They are logically equal");
+        myHashSet.add("Tony");
+        myHashSet.add("Tony");
+        myHashSet.add("Tony");
+        myHashSet.add("Tony");
+        myHashSet.add("Tony");
+        myHashSet.add("Tony");
+        myHashSet.add("Tony");
+        myHashSet.add("Tony");
+        System.out.println(myHashSet);
     }
+
+
     static ArrayList<String> getWords(){
         ArrayList<String> words= new ArrayList<>();
 //Get the words from somewhere
@@ -152,20 +164,22 @@ public class CollectionsTest {
         Map rawMap = new HashMap();
         rawMap.put("key1",77);
         rawMap.put("key2","mixy");
-        rawMap.put("foo",new int[]{1,2,3,4});
-
-        System.out.println(rawMap.get("key1"));
-        System.out.println(rawMap.get("foo"));
+        rawMap.put(33,new int[]{1,2,3,4});
+/*
+        System.out.println(" Value with key1 ="+ rawMap.get("key1"));
+        System.out.println(" Value with foo ="+rawMap.get(33));
+        System.out.println(rawMap.get(33));
         if(rawSet.contains(rawArray.get(0)))
             System.out.println(" Element 0 in array is in the set");
         if(rawArray.get(0).equals(rawMap.get("key1")))
             System.out.println(" Element 0 in array equal to element with key1 in map");
+
+
         System.exit(0);
 //MAPS ARE NOT ITERABLE
-
+*/
 
         Map<String,Integer> dictionary=new HashMap<>();
-        Map<MyEntry, MyEntry> myDict=new HashMap<>();
         ArrayList<String> words= getWords();
         for(String str: words){
             if(dictionary.containsKey(str)) {
@@ -181,11 +195,14 @@ public class CollectionsTest {
 
         for ( Integer value : dictionary.values() )
             System.out.println(" Value = "+value);
+        Set<Map.Entry<String, Integer>> entries = dictionary.entrySet();
 
-        for ( Map.Entry<String, Integer> entry : dictionary.entrySet() )
+        for ( Map.Entry<String, Integer> entry : entries )
             System.out.println("VALUE = "+entry.getValue()+" KEY = "+entry.getKey());
+        System.exit(0);
 
 
+        Map<MyEntry, MyEntry> myDict=new HashMap<>();
         MyEntry temp=new MyEntry("",1);
         for(String str: words) {
             temp.key=str;
@@ -225,11 +242,32 @@ public class CollectionsTest {
     }
 
     public static void main(String[] args) {
-        usingSetsBasic();
+        usingMapsBasic();
         System.exit(0);
 
-        //        usingMapsBasic();
         ArrayList<Car> allCars=Car.createCars();
+        Car myCar = allCars.get(0);
+        Car otherCar = new Car();
+        otherCar.make = myCar.make;
+        otherCar.doors = myCar.doors;
+
+        if(myCar==otherCar)
+            System.out.println(" The same");
+        else
+            System.out.println(" Different");
+
+        if(myCar.equals(otherCar))
+            System.out.println(" The same");
+        System.out.println(" Hash Code = "+otherCar.hashCode());
+        System.out.println(" Hash Code = "+myCar.hashCode());
+        HashSet<Car> myCars=new HashSet<>();
+        myCars.add(myCar);
+        myCars.add(otherCar);
+        System.out.println(myCars);
+
+
+
+        System.exit(0);
         System.out.println("************ Using ArrayList **********");
         System.out.println("Array list of Cars = "+allCars);
         Collection<String> carMakes=new ArrayList<>();

@@ -6,7 +6,6 @@ package week_11_demo;
 
 public class TimeSeriesV1 implements Comparable<TimeSeriesV1>{
 
-
     public double[] data;
     TimeSeriesStats stats;
 

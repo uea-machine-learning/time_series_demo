@@ -16,9 +16,9 @@ public class Car implements Serializable {
     enum CarMakes{BMW,Mercedes,Ford,Toyota,Volkswagen,Honda,Cadillac,Chrysler,Tesla,Audi,LandRover}
 
     //Better to use an enum for makes
-    private String make;
+    public String make;
     public int doors;
-    private String colour;
+    public String colour;
     private int type; //0=hatch back, 1= sedan, /2=SUV
     private double engineSize;
     static String foo="FOO";
@@ -91,6 +91,20 @@ public class Car implements Serializable {
         }
         return cars;
     }
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Car))
+            return false;
+        Car o = (Car)other;
+        if(this.make.equals(o.make) && this.doors==o.doors)
+            return true;
+        return false;
+    }
+    @Override
+    public int hashCode(){
+        return this.make.hashCode()+doors;
+    }
+
 
     public static void main(String[] args) {
         Comparator<Car> cmp = (a,b) -> a.doors-b.doors;

@@ -6,16 +6,21 @@ join for one thread to wait for another to finish
 */
 
 public class ThreadsBasics extends Thread{
+//public class ThreadsBasics implements Runnable{
+
+
     public String threadName;
     public ThreadsBasics(String s){
         threadName=s;
     }
+
     @Override
     public void run(){
         for(int i=0;i<100000;i++) {
             if (i % 10000 == 0) {
-                for (int j = 0; j < id; j++)
+                for (int j = 0; j < id; j++){
                     System.out.print("\t ");
+                }
                 System.out.println(threadName + " iteration " + i);
             }
         }
@@ -30,11 +35,18 @@ public class ThreadsBasics extends Thread{
     }
 
     public static void main(String[] args){
-        ThreadsBasics t1=new ThreadsBasics(" Thread 1");
-        ThreadsBasics t2=new ThreadsBasics(" Thread 2");
+        ThreadsBasics t1=new ThreadsBasics(" Object 1");
+        ThreadsBasics t2=new ThreadsBasics(" Object 2");
         System.out.println(" THREAD EXAMPLE 1");
-
-
+        Thread myThread = new Thread(t1);
+        Thread myThread2 = new Thread(t2);
+        t1.run();
+        System.out.println("**********************************************");
+        t2.run();
+        System.out.println("**********************************************");
+        t1.start();
+        System.out.println("**********************************************");
+        t2.start();
 
 
 
