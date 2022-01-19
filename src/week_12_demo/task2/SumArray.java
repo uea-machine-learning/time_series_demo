@@ -33,13 +33,17 @@ public class SumArray extends Thread{
         end=e;
         name=str;
     }
-    
+    static synchronized void addToGrandSum(int x){
+        grandSum+=x;
+    }
     public void run(){
 //Question 1:, write the code to find the sum of data from start to end-1,
         int localSum=0;
         for(int i=start;i<end;i++)
             localSum+=data[i];
-        grandSum += localSum;
+        synchronized(SumArray.grandSum) {
+            grandSum += localSum;
+        }
     }
     
     public static void threadSum() throws Exception{
@@ -58,6 +62,8 @@ public class SumArray extends Thread{
 
         for(int i=0;i<numThreads;i++)
             s[i].start();
+        for(int i=0;i<numThreads;i++)
+            s[i].join();
     }
 
     public static void main(String[] args) throws Exception {

@@ -20,6 +20,15 @@ public final class FlightSimulator {
     planeThree.start();
     planeFour.start();
 
+    planeOne = new Thread( new Airplane(naarwich, "Flight 4567") );
+    planeTwo = new Thread( new Airplane(naarwich, "Flight 7654") );
+    planeThree = new Thread( new Airplane(naarwich, "Flight 4353") );
+    planeFour = new Thread( new Airplane(naarwich, "Flight FOOBAR") );
+    planeOne.start();
+    planeTwo.start();
+    planeThree.start();
+    planeFour.start();
+
     //notice that this user thread now ends, but the program itself does
     //NOT end since the threads created above are also user
     //threads. All user threads have equal status, and there

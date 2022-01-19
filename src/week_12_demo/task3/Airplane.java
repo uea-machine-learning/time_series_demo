@@ -1,6 +1,9 @@
 package week_12_demo.task3;
 public final class Airplane implements Runnable {
 
+  private Airport fAirport;
+  private String fFlightId;
+
   public Airplane ( Airport aAirport, String aFlightId ){
     fAirport = aAirport;
     fFlightId = aFlightId;
@@ -11,10 +14,6 @@ public final class Airplane implements Runnable {
     fly();
     land();
   }
-
-  // PRIVATE ////
-  private Airport fAirport;
-  private String fFlightId;
 
   private void takeOff() {
     synchronized( fAirport ) {
