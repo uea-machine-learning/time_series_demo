@@ -16,7 +16,7 @@ public class Adder implements Runnable{
         }catch(InterruptedException e){
             System.out.println(" LET ME SLEEP");
         }
-        Application.sharedData+=50;
-        System.out.println(" HELLO");
+        Application.add(50);
+        System.out.println(" Adder finished");
     }
 }

@@ -19,10 +19,7 @@ public class Subtracter extends Thread{
         }
         Application.subtract(10);
 
-//        synchronized(Application.class) {
-//            Application.sharedData -= 10;
-//        }
-        System.out.println("WORLD");
+        System.out.println("Subtracter finished");
     }
 
 }

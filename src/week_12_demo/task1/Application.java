@@ -11,13 +11,16 @@ import java.util.ArrayList;
  * @author ajb
  */
 public class Application {
-    public static int sharedData=0;
+    private static int sharedData=0;
     static String str;
     //Shared memory
     public static ArrayList<Integer> sharedMemory = new ArrayList<>();
 
     public synchronized static void subtract(int x){
         sharedData-=x;
+    }
+    public synchronized static void add(int x){
+        sharedData+=x;
     }
 
     public static void main(String[] args) {
@@ -26,6 +29,11 @@ public class Application {
         Subtracter second=new Subtracter();
         long t=System.nanoTime();
         System.out.println(" shared data = "+Application.sharedData);
+/*
+        myAdder.run();
+        first.run();
+        second.run();
+*/
         Thread temp = new Thread(myAdder);
         temp.start();
         first.start();
